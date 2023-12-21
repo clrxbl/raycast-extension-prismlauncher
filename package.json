@@ -1,7 +1,7 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "prismlauncher",
-  "title": "prismlauncher",
+  "title": "Prism Launcher",
   "description": "Launch Prism Launcher instances from within Raycast",
   "icon": "prismlauncher.svg",
   "author": "clrxbl",
