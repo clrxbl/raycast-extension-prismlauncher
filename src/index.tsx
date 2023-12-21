@@ -35,15 +35,19 @@ function getInstanceConfig(instance: string) {
   }
 }
 
-function getInstanceIcon(instance: string) {
+function getInstanceMetadata(instance: string) {
   const config = getInstanceConfig(instance);
+
+  // Get name
+  const name = config.name;
+
+  // Get icon
   // https://github.com/PrismLauncher/PrismLauncher/blob/e39a03421a6e8cdf58f8b5d98388b9eef55d44b7/launcher/icons/IconUtils.cpp#L42
   const validIconExtensions = [".svg", ".png", ".ico", ".gif", ".jpg", ".jpeg"];
-
   // We can only display icons that are in the icon directory as Prism doesn't expose the default icons anywhere
   let icon = "minecraft.svg"
 
-  validIconExtensions.find(extension => {
+  validIconExtensions.find((extension) => {
     const iconPath = path.join(iconDir, `${config.iconKey}${extension}`);
     if (fs.existsSync(iconPath)) {
       console.log(`Found icon for ${instance}: ` + iconPath);
@@ -51,11 +55,11 @@ function getInstanceIcon(instance: string) {
     }
   });
 
-  return icon;
+  return { name, icon };
 }
 
 function launchInstance(instance: string) {
-  console.log(`Launching ${instance}`)
+  console.log(`Launching ${instance}`);
   execSync("'/Applications/Prism Launcher.app/Contents/MacOS/prismlauncher'" + ` --launch ${instance}`);
 }
 
@@ -64,18 +68,21 @@ const instances = getInstances();
 export default function Command() {
   return (
     <List>
-      {instances.map((instance: {key: string, name: string}) => (
-        <List.Item
-          key={instance.key}
-          icon={getInstanceIcon(instance.name)}
-          title={instance.name}
-          actions={
-            <ActionPanel>
-              <Action title="Launch" onAction={() => launchInstance(instance.name)} />
-            </ActionPanel>
-          }
-        />
-      ))}
+      {instances.map((instance: { key: string; name: string }) => {
+        const { name, icon } = getInstanceMetadata(instance.name);
+        return (
+          <List.Item
+            key={instance.key}
+            icon={icon}
+            title={name}
+            actions={
+              <ActionPanel>
+                <Action title="Launch" onAction={() => launchInstance(instance.name)} />
+              </ActionPanel>
+            }
+          />
+        );
+      })}
     </List>
   );
 }
