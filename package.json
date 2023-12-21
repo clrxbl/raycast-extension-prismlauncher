@@ -6,15 +6,13 @@
   "icon": "prismlauncher.svg",
   "author": "clrxbl",
   "categories": [
-    "Applications",
-    "Productivity",
-    "Fun"
+    "Applications"
   ],
   "license": "MIT",
   "commands": [
     {
       "name": "index",
-      "title": "Launch Minecraft instance",
+      "title": "Launch Minecraft Instance",
       "description": "Shows a list of available Prism Launcher instances",
       "mode": "view"
     }
