@@ -45,7 +45,7 @@ function getInstanceMetadata(instance: string) {
   // https://github.com/PrismLauncher/PrismLauncher/blob/e39a03421a6e8cdf58f8b5d98388b9eef55d44b7/launcher/icons/IconUtils.cpp#L42
   const validIconExtensions = [".svg", ".png", ".ico", ".gif", ".jpg", ".jpeg"];
   // We can only display icons that are in the icon directory as Prism doesn't expose the default icons anywhere
-  let icon = "minecraft.svg"
+  let icon = "minecraft.svg";
 
   validIconExtensions.find((extension) => {
     const iconPath = path.join(iconDir, `${config.iconKey}${extension}`);
