@@ -2,7 +2,7 @@
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "prismlauncher",
   "title": "Prism Launcher",
-  "description": "Launch Prism Launcher instances from within Raycast",
+  "description": "Launch Minecraft instances via Prism Launcher",
   "icon": "prismlauncher.svg",
   "author": "clrxbl",
   "categories": [
