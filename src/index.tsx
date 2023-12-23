@@ -58,8 +58,18 @@ function getInstanceMetadata(instance: string) {
   return { name, icon };
 }
 
+// This really should not be a thing but Prism doesn't allow you to use the CLI to launch more than 1 instance yet
+function ensurePrismLauncherIsDead() {
+  try {
+    execSync("pkill prismlauncher");
+  } catch (error) {
+    // PrismLauncher is already dead
+  }
+}
+
 function launchInstance(instance: string) {
   console.log(`Launching ${instance}`);
+  ensurePrismLauncherIsDead();
   execSync("'/Applications/Prism Launcher.app/Contents/MacOS/prismlauncher'" + " --launch " + `"${instance}"`);
 }
 
