@@ -60,7 +60,7 @@ function getInstanceMetadata(instance: string) {
 
 function launchInstance(instance: string) {
   console.log(`Launching ${instance}`);
-  execSync("'/Applications/Prism Launcher.app/Contents/MacOS/prismlauncher'" + ` --launch ${instance}`);
+  execSync("'/Applications/Prism Launcher.app/Contents/MacOS/prismlauncher'" + " --launch " + `"${instance}"`);
 }
 
 const instances = getInstances();
